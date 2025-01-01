@@ -25,7 +25,7 @@ class Mytask(db.Model):
 @app.route("/", methods=["POST","GET"])
 def index():
     #add a task
-    if request == "POST":
+    if request.method == "POST":
         current_task = request.form['content']
         new_task = Mytask(content=current_task)
         try:
@@ -37,8 +37,22 @@ def index():
             return f"ERROR:{e}"
       #see all task
     else:
-        tasks = Mytask.query.order_by(Mytask.created)
+        tasks = Mytask.query.all()
+        print(tasks)
         return render_template("index.html", tasks=tasks)
+
+
+
+#Delete an item
+@app.route("/delete/<int:id>")
+def delete(id:int):
+    delete_task = Mytask.query.get_or_404(id)
+    try:
+        db.session.delete(delete_task)
+        db.session.commit()
+        return redirect("/")
+    except Exception as e:
+        return f"ERROR:{e}"    
 
 
 
