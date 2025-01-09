@@ -20,6 +20,8 @@ class Mytask(db.Model):
     def __repr__(self) -> str:
         return f"Task {self.id}"
 
+with app.app_context():
+        db.create_all()
 
 
 @app.route("/", methods=["POST","GET"])
@@ -70,7 +72,5 @@ def update(id:int):
         return render_template('update.html', task=task)
     
 
-if __name__ in "__main__":
-    with app.app_context():
-        db.create_all()
+if __name__ == "__main__":
     app.run(debug=True) 

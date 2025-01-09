@@ -56,5 +56,26 @@ body {
     color: #fff;
     text-decoration: none;
     transition: background-color 0.3 ease;
+
+    //hover over a tag
+    &:hover {
+      background-color: $primary-hover-color;
+    }
+  }
+
+  input {
+    padding: 10px;
+    margin: 5px;
+    border: solid 1px;
+    border-radius: 5px;
+  }
+
+  #btn_add {
+    background-color: $success-color;
+    color: #fff;
+    cursor: pointer;
+    &:hover {
+      background-color: $success-hover-color;
+    }
   }
 }
